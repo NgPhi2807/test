@@ -38,14 +38,18 @@ class SubjectDateSerializer(serializers.ModelSerializer):
 class StudentAttendanceSerializer(serializers.ModelSerializer):
     student = serializers.StringRelatedField()  
     subject_date = SubjectDateSerializer()  
-    name_subject = serializers.SerializerMethodField()  
-    
+    name_subject = serializers.SerializerMethodField()
+
     class Meta:
         model = StudentAttendance
-        fields = ['student', 'subject_date','name_subject','status']
+        fields = ['student', 'subject_date', 'name_subject', 'status']
 
     def get_name_subject(self, obj):
         return obj.subject_date.subject.name if obj.subject_date else None
+
+    def get_idstu(self, obj):  # sửa tên hàm cho đúng
+        return obj.student.customer.id if obj.student and obj.student.customer else None
+
 
 class SubjectWithStudentCountSerializer(serializers.ModelSerializer):
     student_count = serializers.SerializerMethodField()
@@ -93,9 +97,11 @@ class StudentAttendanceSerializer(serializers.ModelSerializer):
     status = serializers.BooleanField()
     subject_date = serializers.PrimaryKeyRelatedField(read_only=True)
     current_date = serializers.DateField(source='subject_date.current_date', read_only=True)
+    idstudent = serializers.CharField(source='student.id')  
+
     class Meta:
         model = StudentAttendance
-        fields = ['student', 'first_name', 'last_name', 'status', 'subject_date', 'current_date']
+        fields = ['idstudent','student', 'first_name', 'last_name', 'status', 'subject_date', 'current_date']
 
 class SubjectSerializerStudent(serializers.ModelSerializer):
     subject_dates = serializers.SerializerMethodField()

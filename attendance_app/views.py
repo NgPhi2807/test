@@ -64,6 +64,7 @@ class UserInfoViewSet(viewsets.ViewSet):
         user = request.user
 
         user_info = {
+            "id":user.id,
             "username": user.username,
             "email": user.email,
             "role": user.role,
