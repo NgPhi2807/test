@@ -12,9 +12,9 @@ import imgaug.augmenters as iaa
 # Cấu hình
 confidence_t = 0.8
 required_size = (160, 160)
-encodings_path = r'F:\codePython\PBL5\face_recognize\hoa_newModel\encodings1.pkl'
-model_path = r'F:\codePython\PBL5\face_recognize\hoa_newModel\embedding_model_new6.h5'
-dataset_path = r'F:\codePython\PBL5\face_recognize\media\dataset'
+encodings_path = r'/workspaces/test/hoa_newModel/encodings1.pkl'
+model_path = r'/workspaces/test/hoa_newModel/embedding_model_new6.h5'
+dataset_path = r'hoa_newModel/datasets'
 os.makedirs("encodings", exist_ok=True)
 
 # Khởi tạo mô hình và detector

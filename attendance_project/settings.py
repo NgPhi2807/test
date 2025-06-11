@@ -52,6 +52,9 @@ SIMPLE_JWT = {
     'AUTH_HEADER_TYPES': ('Bearer',),
 }
 CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOWED_ORIGINS = [
+    "https://f58c-183-81-127-52.ngrok-free.app",  # địa chỉ frontend React
+]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -83,20 +86,20 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'attendance_project.wsgi.application'
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'datapbl5',  # Tên database
-        'USER': 'root',  # User mặc định của MySQL trên XAMPP
-        'PASSWORD': '',  # XAMPP mặc định không có mật khẩu
-        'HOST': '127.0.0.1',
-        'PORT': '3306',
-        'OPTIONS': {
-            'charset': 'utf8mb4',
-            'init_command': "SET NAMES utf8mb4 COLLATE utf8mb4_unicode_ci;",
-        }
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'datapbl5',  # Tên database
+#         'USER': 'root',  # User mặc định của MySQL trên XAMPP
+#         'PASSWORD': '',  # XAMPP mặc định không có mật khẩu
+#         'HOST': '127.0.0.1',
+#         'PORT': '3306',
+#         'OPTIONS': {
+#             'charset': 'utf8mb4',
+#             'init_command': "SET NAMES utf8mb4 COLLATE utf8mb4_unicode_ci;",
+#         }
+#     }
+# }
 
 AUTH_PASSWORD_VALIDATORS = [
     {

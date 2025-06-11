@@ -22,14 +22,15 @@ from hoa_newModel.architecture_embedding import InceptionResNetV2
 from scipy.spatial.distance import cosine
 from tensorflow.keras.applications.inception_resnet_v2 import preprocess_input
 from sklearn.preprocessing import Normalizer
+from rest_framework.permissions import AllowAny
 
 device = 'cuda' if torch.cuda.is_available() else 'cpu'
 confidence_t = 0.8
 recognition_t = 0.4
 required_size = (160, 160)
 
-encodings_path = r'F:\codePython\PBL5\face_recognize\hoa_newModel\encodings1.pkl'
-model_path = r'F:\codePython\PBL5\face_recognize\hoa_newModel\embedding_model_new6.h5'
+encodings_path = r'/workspaces/test/hoa_newModel/encodings1.pkl'
+model_path = r'/workspaces/test/hoa_newModel/embedding_model_new6.h5'
 
 l2_normalizer = Normalizer('l2')
 face_encoder = InceptionResNetV2()
@@ -58,7 +59,7 @@ def get_embedding(face):
     return l2_normalizer.transform(encode.reshape(1, -1))[0]
 
 class FaceRecognitionAPIView(APIView):
-    permission_classes = [IsAuthenticated]
+    permission_classes = [AllowAny]
 
     def post(self, request):
         uploaded_file = request.FILES.get("image")
@@ -155,7 +156,7 @@ def upload_face(request):
 
     # Tạo thư mục lưu ảnh
     folder_name = str(user.id)
-    base_dir = r'F:\codePython\PBL5\face_recognize\media\dataset'
+    base_dir = r'/workspaces/test/media/dataset'
     save_dir = os.path.join(base_dir, folder_name)
     os.makedirs(save_dir, exist_ok=True)
 
